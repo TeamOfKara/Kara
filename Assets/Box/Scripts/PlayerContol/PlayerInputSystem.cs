@@ -47,6 +47,25 @@ public class PlayerInputSystem : MonoBehaviour
         // LayerMask
         groundLayer = 1 << LayerMask.NameToLayer("Ground");
 
+        PlayerControlSetting();
+        UIControlSetting();
+    }
+
+    private void OnEnable()
+    {
+        playerAction.Player.Enable();
+        playerAction.UI.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerAction.Player.Disable();
+        playerAction.UI.Enable();
+    }
+
+    #region PlayerControl
+    private void PlayerControlSetting()
+    {
         // Movement
         playerAction.Player.Movement.started += OnMovement;
         playerAction.Player.Movement.performed += OnMovement;
@@ -85,14 +104,12 @@ public class PlayerInputSystem : MonoBehaviour
     {
         Gizmos.DrawWireSphere(this.transform.position  -this.transform.up * offset, radius);
     }
+    #endregion
 
-    private void OnEnable()
+    #region UIControl
+    private void UIControlSetting()
     {
-        playerAction.Player.Enable();
+        // Movement
     }
-
-    private void OnDisable()
-    {
-        playerAction.Player.Disable();
-    }
+    #endregion
 }

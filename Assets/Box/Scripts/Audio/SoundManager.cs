@@ -59,12 +59,7 @@ namespace  BW
         public AudioClip[] sfxClip_Test;
         public Transform testTarnsform;
 
-        private void Start()
-        {
-            //PlayMusic(misicClip_Test[0], .3f, testTarnsform);
-        }
-
-    #region Music
+        #region Music
         public int PlayMusic(AudioClip clip, Transform transform = null)
         {
             return playMusic(AudioType.Music, clip, 1f, transform);
@@ -85,9 +80,9 @@ namespace  BW
 
             return audioID;
         }
-    #endregion
+        #endregion
 
-    #region SFX
+        #region SFX
         public int PlaySFX(AudioClip clip, Transform transform = null)
         {
             return PlaySFX(AudioType.SFX, clip, 1f, transform);
@@ -106,9 +101,9 @@ namespace  BW
 
             return audioID;
         }
-    #endregion
+        #endregion
 
-    #region Add AudioSource
+        #region Add AudioSource
         private int AddAudio(AudioType audioType, AudioClip audioClip, float volume, Transform transform)
         {
             Dictionary<int, AudioSource> audioDic = GetAudioTypeDictionary(audioType);
@@ -161,9 +156,9 @@ namespace  BW
             audio.outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0];
             audio.volume = volume;
         }
-    #endregion
+        #endregion
 
-    #region Get AudioSource
+        #region Get AudioSource
         private AudioSource GetAudio(AudioType audioType, int audioID)
         {
             Dictionary<int, AudioSource> audioDic = GetAudioTypeDictionary(audioType);
@@ -175,9 +170,9 @@ namespace  BW
                 return null;
             }
         }
-    #endregion
+        #endregion
 
-    #region Get AudioDictionary
+     #region Get AudioDictionary
         private Dictionary<int, AudioSource> GetAudioTypeDictionary(AudioType audioType)
         {
             Dictionary<int, AudioSource> audioDic = new Dictionary<int, AudioSource>();
@@ -191,9 +186,9 @@ namespace  BW
             }
             return audioDic;
         }
-    #endregion
+        #endregion
 
-    #region Auto Remove Audio
+        #region Auto Remove Audio
         private void LateUpdate()
         {
             UpdateAllAudio(MusicAudioDic);
@@ -212,9 +207,9 @@ namespace  BW
                 }
             }
         }
-    #endregion
+        #endregion
 
-    #region Stop All Audio
+        #region Stop All Audio
         private void StopAllAudio(AudioType audioType, float fadeOutTime)
         {
             Dictionary<int, AudioSource> audioDic = GetAudioTypeDictionary(audioType);
@@ -231,9 +226,9 @@ namespace  BW
                 }
             }
         }
-    #endregion
+        #endregion
 
-    #region Volume Fade
+        #region Volume Fade
         IEnumerator FadeInCoroutine(AudioSource audio, float fadeOutTime, Action callBack = null) // Volume Off
         {
             float time = 0f;
@@ -272,13 +267,13 @@ namespace  BW
             callBack?.Invoke();
             yield break;
         }
-    #endregion
+        #endregion
 
-    #region Volume Slider ( Slider.MinValue => 0.0001 )
-    public void MasterVolume(float level) => audioMixer.SetFloat("materVolume", Mathf.Log10(level) * 20f);
-    public void MusicVolume(float level) => audioMixer.SetFloat("musicVolume", Mathf.Log10(level) * 20f);
-    public void SFXVolume(float level) => audioMixer.SetFloat("sfxVolume", Mathf.Log10(level) * 20f);
-    #endregion
+        #region Volume Slider ( Slider.MinValue => 0.0001 )
+        public void MasterVolume(float level) => audioMixer.SetFloat("materVolume", Mathf.Log10(level) * 20f);
+        public void MusicVolume(float level) => audioMixer.SetFloat("musicVolume", Mathf.Log10(level) * 20f);
+        public void SFXVolume(float level) => audioMixer.SetFloat("sfxVolume", Mathf.Log10(level) * 20f);
+        #endregion
 
         private void OnApplicationPause(bool pause)
         {

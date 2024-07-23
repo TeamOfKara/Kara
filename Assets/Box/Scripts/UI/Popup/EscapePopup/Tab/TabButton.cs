@@ -16,8 +16,6 @@ namespace BW
         {
             tabGroup = GetComponentInParent<TabGroup>();
             image = GetComponent<Image>();
-
-            tabGroup.Subscribe(this);
         }
 
         public void OnPointerEnter(PointerEventData eventData)

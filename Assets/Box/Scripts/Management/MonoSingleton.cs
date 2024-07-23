@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace BW
@@ -19,7 +18,6 @@ namespace BW
                 lock (lockObject)
                 {
                     if (isQuitting) return null;
-
                     // Get instance
                     _instance = (T)FindObjectOfType(typeof(T));
 
@@ -48,12 +46,12 @@ namespace BW
             }
         }
 
-        private void OnDisable()
+        public virtual void OnDisable()
         {
             _instance = null;
         }
 
-        private void OnApplicationQuit()
+        public virtual void OnApplicationQuit()
         {
             _instance = null;
             isQuitting = true;
