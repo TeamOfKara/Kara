@@ -10,10 +10,9 @@ namespace BW
     {
         [SerializeField] private Image maskImage;
         [SerializeField] private Image maskedImage;
-        [SerializeField] private Color maskedImageColor = Color.black;
         [SerializeField, Range(0.1f, 3f)] private float fadeSpeed = 1f;
-        private float maskImageMaxWidth;
-        private float maskImageMaxHeight;
+        [ReadOnly] private float maskImageMaxWidth;
+        [ReadOnly] private float maskImageMaxHeight;
 
         private void Awake()
         {
@@ -21,9 +20,6 @@ namespace BW
             maskImage.TryGetComponent<RectTransform>(out RectTransform maskImageRect);
             maskImageMaxWidth = maskImageRect.rect.width;
             maskImageMaxHeight = maskImageRect.rect.height;
-
-            // Set maskedImage Color
-            maskedImage.color = maskedImageColor;
             
             // UnActive maskImage
             maskImage.gameObject.SetActive(false);

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class MaskedUI : Image
+public class MaskedImage : Image
 {
     public override Material materialForRendering
     { 
