@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateNormal : PlayerStateConponent, IPlayerState
+public class PlayerStateNormal : PlayerStateComponent, IPlayerState
 {
     // Movement
     private float baseSpeed = 5f;
@@ -17,8 +17,6 @@ public class PlayerStateNormal : PlayerStateConponent, IPlayerState
     private bool isFirstJump = true;
     private bool isJumping = false;
     private float jumpTime = 0f;
-    
-    public PlayerStateNormal(Rigidbody2D rigid, CapsuleCollider2D col, PlayerController playerController) : base(rigid, col, playerController) { }
 
     private void Sprint()
     {

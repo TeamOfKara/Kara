@@ -7,34 +7,6 @@ using System;
 
 namespace  BW
 {
-    #if UNITY_EDITOR
-    using UnityEditor;
-    [CustomEditor(typeof(SoundManager))]
-    public class TestButton : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            if (!Application.isPlaying) return;
-
-            SoundManager soundManager = (SoundManager)target;
-
-            for (int i = 0; i < soundManager.misicClip_Test.Length; ++i) {
-                if (GUILayout.Button("PlayMusic_" + i)) {
-                    SoundManager.instance.PlayMusic(soundManager.misicClip_Test[i]);
-                }
-            }
-
-            for (int i = 0; i < soundManager.sfxClip_Test.Length; ++i) {
-                if (GUILayout.Button("PlaySFX_" + i)) {
-                    SoundManager.instance.PlaySFX(soundManager.sfxClip_Test[i]);
-                }
-            }
-        }
-    }
-    #endif
-
     public class SoundManager : MonoSingleton<SoundManager>
     {
         public enum AudioType { Music, SFX }
@@ -70,6 +42,9 @@ namespace  BW
             return playMusic(AudioType.Music, clip, volume, transform);
         }
 
+        /// <summary>
+        /// Base Music
+        /// </summary>
         private int playMusic(AudioType audioType, AudioClip audioClip, float volume, Transform transform)
         {
             StopAllAudio(audioType, 1f);
@@ -93,6 +68,9 @@ namespace  BW
             return PlaySFX(AudioType.SFX, clip, volume, transform);
         }
 
+        /// <summary>
+        /// Base SFX
+        /// </summary>
         private int PlaySFX(AudioType audioType, AudioClip audioClip, float volume, Transform transform)
         {
             int audioID = AddAudio(audioType, audioClip, volume, transform);

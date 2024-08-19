@@ -15,7 +15,7 @@ namespace BW
             //PopupManager.instance.escapePopup.EscapePopupToggle();
 
             // 대사 가져오기
-            //DialogueManager.instance.GetDialogueData("KaraDataTest");
+            DialogueManager.instance.GetDialogueData("KaraDataTest");
 
             // 퀘스트 가져오기
             //QuestManager.instance.GetQuestData("KaraQuestDataTest");

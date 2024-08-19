@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateDead : PlayerStateConponent, IPlayerState
+public class PlayerStateWait : PlayerStateComponent, IPlayerState
 {
-    public PlayerStateDead(Rigidbody2D rigid, CapsuleCollider2D col, PlayerController playerController) : base(rigid, col, playerController) { }
-    
     public void OperateUpdate()
     {
         

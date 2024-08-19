@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ namespace BW
         [SerializeField] private Slider musicSlider;
         [SerializeField] private Slider sfxSlider;
 
-        private void Awake()
+        private void Start()
         {
             // Slider Setting (Min value shoule be '0.0001f')
             masterSlider.minValue = 0.0001f;
@@ -27,9 +28,7 @@ namespace BW
             GetVolume(out float masterVol, out float musicVol, out float sfxVol);
 
             // Set Slider value
-            masterSlider.value = masterVol;
-            musicSlider.value = musicVol;
-            sfxSlider.value = sfxVol;
+            SetVolume(masterVol, musicVol, sfxVol);
         }
 
         private void GetVolume(out float masterVol, out float musicVol, out float sfxVol)
@@ -37,6 +36,17 @@ namespace BW
             masterVol = PlayerPrefs.HasKey("MasterVol") ? PlayerPrefs.GetFloat("MasterVol") : 1f;
             musicVol = PlayerPrefs.HasKey("MusicVol") ? PlayerPrefs.GetFloat("MusicVol") : 1f;
             sfxVol = PlayerPrefs.HasKey("SFXVol") ? PlayerPrefs.GetFloat("SFXVol") : 1f;
+        }
+
+        private void SetVolume(float masterVol, float musicVol, float sfxVol)
+        {
+            SoundManager.instance.MasterVolume(masterVol);
+            SoundManager.instance.MusicVolume(musicVol);
+            SoundManager.instance.SFXVolume(sfxVol);
+
+            masterSlider.value = masterVol;
+            musicSlider.value = musicVol;
+            sfxSlider.value = sfxVol;
         }
 
         private void SaveVolume()

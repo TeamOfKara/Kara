@@ -5,4 +5,6 @@ public interface IPlayerState
     void OperateUpdate();
     void OperateLateUpdate();
     void OperateExit();
+    IPlayerState ThisState();
+    PlayerStateComponent ThisComponent();
 }
