@@ -30,23 +30,15 @@ namespace BW
                         _instance = typeObject != null ? Instantiate(typeObject) : new GameObject().AddComponent<T>();
                         // Set Object Name
                         _instance.name = typeName[typeName.Length - 1];
+                        // Don't Destroy OnLoad
+                        DontDestroyOnLoad(_instance.gameObject);
                     }
                     return _instance;
                 }
             }
         }
 
-        public virtual void Awake()
-        {
-            if (instance == this) {
-                DontDestroyOnLoad(this.gameObject);
-            }
-            else {
-                Destroy(this.gameObject);
-            }
-        }
-
-        public virtual void OnDisable()
+        public virtual void OnDestroy()
         {
             _instance = null;
         }

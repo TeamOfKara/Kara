@@ -41,7 +41,10 @@ public class PlayerStateNormal : PlayerStateComponent, IPlayerState
 
     private void Jump()
     {
-        if (!playerInputSystem.isJumping || !isJumping) return;
+        if (!playerInputSystem.isJumping || !isJumping) { 
+            isJumping = false; 
+            return; 
+        }
 
         if (isFirstJump) {
             isFirstJump = false;
@@ -74,13 +77,19 @@ public class PlayerStateNormal : PlayerStateComponent, IPlayerState
 
     public void OperateEnter()
     {
-        playerInputSystem.jumpAction += () => JumpAction();
-        playerInputSystem.groundAction += () => jumpCount = 0;
+        playerInputSystem.jumpAction += JumpAction;
+        playerInputSystem.groundAction += JumpCountReset;
     }
 
     public void OperateExit()
     {
-        playerInputSystem.jumpAction -= () => JumpAction();
-        playerInputSystem.groundAction -= () => jumpCount = 0;
+        playerInputSystem.jumpAction -= JumpAction;
+        playerInputSystem.groundAction -= JumpCountReset;
     }
+
+    private void JumpCountReset()
+    {
+        jumpCount = 0;
+    }
+
 }

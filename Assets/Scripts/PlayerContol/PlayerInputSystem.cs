@@ -12,10 +12,11 @@ public class PlayerInputSystem : MonoBehaviour
     // ===Movement===
     public Vector2 inputVector { get; private set; }
     public Vector2 moveVector { get; private set; }
+    public Rigidbody2D rigid;
 
     // ===Ground===
     public LayerMask groundLayer { get; private set; }
-    private bool isGrounded;
+    [SerializeField] private bool isGrounded;
     public bool IsGrounded
     { 
         get { return isGrounded; }
@@ -42,6 +43,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
         playerAction = new PlayerAction();
 
         // LayerMask
@@ -84,7 +86,7 @@ public class PlayerInputSystem : MonoBehaviour
     private void OnMovement(InputAction.CallbackContext value)
     {
         inputVector = value.ReadValue<Vector2>();
-        moveVector = new Vector2(inputVector.x, 0f);
+        moveVector = new Vector2(inputVector.x, inputVector.y);
     }
 
     private void Update()
@@ -95,7 +97,9 @@ public class PlayerInputSystem : MonoBehaviour
     public bool GroundedCheck()
     {
         if (Physics2D.CircleCast(this.transform.position, radius, -this.transform.up, offset, groundLayer)) {
-            return true;
+            if (rigid.velocity.y == 0f) {
+                return true;
+            }
         }
         return false;
     }

@@ -20,4 +20,22 @@ public class PlayerController : MonoBehaviour
             playerStateMachine = this.AddComponent<PlayerStateMachine>();
         }
     }
+
+    public void ChangePlayerState(PlayerState state)
+    {
+        switch (state) {
+            case PlayerState.Normal :
+                playerStateMachine.SetState<PlayerStateNormal>();
+                break;
+            case PlayerState.Fly :
+                playerStateMachine.SetState<PlayerStateFly>();
+                break;
+            case PlayerState.Wait :
+                playerStateMachine.SetState<PlayerStateWait>();
+                break;
+            case PlayerState.Dead :
+                playerStateMachine.SetState<PlayerStateDead>();
+                break;
+        }
+    }
 }

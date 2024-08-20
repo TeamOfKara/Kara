@@ -417,7 +417,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskImage: {fileID: 3714470248690016651}
   maskedImage: {fileID: 5833814026829053098}
-  maskedImageColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 1
 --- !u!1 &1971425416578216543
 GameObject:
@@ -2089,7 +2088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &451410324557210015
 RectTransform:
   m_ObjectHideFlags: 0
